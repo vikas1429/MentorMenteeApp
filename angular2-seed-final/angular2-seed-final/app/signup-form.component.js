@@ -9,25 +9,30 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
+var forms_1 = require("@angular/forms");
 var router_1 = require("@angular/router");
-var CreateMentorComponent = (function () {
-    function CreateMentorComponent(_router) {
+var SignUpFormComponent = (function () {
+    function SignUpFormComponent(_router) {
         this._router = _router;
     }
-    CreateMentorComponent.prototype.ngOnInit = function () {
+    SignUpFormComponent.prototype.ngOnInit = function () {
+        this.SignUp = new forms_1.FormGroup({
+            username: new forms_1.FormControl(''),
+            password: new forms_1.FormControl('')
+        });
     };
-    CreateMentorComponent.prototype.CreateMentor = function () {
-        this._router.navigate(['creatementor', 'test'
+    SignUpFormComponent.prototype.onSignUp = function () {
+        this._router.navigate(['mentor', this.SignUp.controls['username'].value
         ]);
     };
-    return CreateMentorComponent;
+    return SignUpFormComponent;
 }());
-CreateMentorComponent = __decorate([
+SignUpFormComponent = __decorate([
     core_1.Component({
-        selector: 'mentor-form',
-        templateUrl: 'app/mentor-form.html'
+        selector: 'signup-form',
+        templateUrl: 'app/signup-form.component.html'
     }),
     __metadata("design:paramtypes", [router_1.Router])
-], CreateMentorComponent);
-exports.CreateMentorComponent = CreateMentorComponent;
-//# sourceMappingURL=app.mentor.component.js.map
+], SignUpFormComponent);
+exports.SignUpFormComponent = SignUpFormComponent;
+//# sourceMappingURL=signup-form.component.js.map
