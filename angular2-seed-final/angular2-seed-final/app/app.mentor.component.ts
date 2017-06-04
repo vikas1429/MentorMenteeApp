@@ -4,25 +4,29 @@ import {Router} from '@angular/router';
 
 @Component({
     selector: 'mentor-form',
-    templateUrl: 'app/mentor-form.html'
+    templateUrl: 'app/mentor-form.html',
+     styles:[`
+    .tablecontainer{border:solid;border-collapse: collapse;}
+    `
+  ]
+   
 })
 
 export class CreateMentorComponent implements OnInit{
 
-  
+    show:any;
+    CurrDate: VarDate;
     constructor(private _router:Router)
     {
-       
+       this.show = false;
     }
     ngOnInit()
     {
-         
+         this.CurrDate = Date.now();
     }
-    CreateMentor()
+    fgetMentors()
     {
-        
-        this._router.navigate(['creatementor','test'
-         
-        ]);
+       this.show = true;
     }
+  
 }

@@ -1,1 +1,45 @@
-<h1>Coming soon </h1>
+<h1>Add a mentor</h1>
+ 
+     <div >
+            <label>Select Category</label>
+     </div>
+
+         <div> 
+         <select>
+            <option value="volvo">project management</option>
+            <option value="saab">C++ programming</option>
+            <option value="opel">Angular JS</option>
+            <option value="audi">Cloud Computing</option>
+            </select>
+         
+             <button (click)="fgetMentors()">Search</button>
+         </div>
+        <div><h1> </h1></div>
+    <table  class="tablecontainer" *ngIf ="show"  >
+       <tr >
+            <th  class="tablecontainer">Name</th>
+            <th  class="tablecontainer">Lecture</th>  
+            <th  class="tablecontainer">date</th>  
+            <th  class="tablecontainer"></th>  
+            
+
+       </tr>   
+       <tr >
+          <td  class="tablecontainer">
+              {{"vikas"}}
+          </td> 
+          <td  class="tablecontainer">
+              {{"Project Management"}}
+          </td> 
+
+           <td  class="tablecontainer">
+              {{CurrDate | date}}
+          </td> 
+
+           <td  class="tablecontainer">
+               <button>Add</button>
+          </td> 
+          
+      </tr>
+   </table>
+        
