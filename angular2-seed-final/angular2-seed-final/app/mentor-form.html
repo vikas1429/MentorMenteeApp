@@ -5,12 +5,9 @@
      </div>
 
          <div> 
-         <select>
-            <option value="volvo">project management</option>
-            <option value="saab">C++ programming</option>
-            <option value="opel">Angular JS</option>
-            <option value="audi">Cloud Computing</option>
-            </select>
+         <select [(ngModel)] ='SelectedValue'>
+            <option *ngFor ="let category of categorylist" >{{category}}</option>
+        </select>
          
              <button (click)="fgetMentors()">Search</button>
          </div>
@@ -24,20 +21,20 @@
             
 
        </tr>   
-       <tr >
+       <tr *ngFor ="let detail of mentorlist;let i = index ">
           <td  class="tablecontainer">
-              {{"vikas"}}
+              {{detail.name}}
           </td> 
           <td  class="tablecontainer">
-              {{"Project Management"}}
+              {{detail.category}}
           </td> 
 
            <td  class="tablecontainer">
-              {{CurrDate | date}}
+              {{detail.schedule}}
           </td> 
 
            <td  class="tablecontainer">
-               <button>Add</button>
+               <button (click)="faddMentor(i)" >Add</button>
           </td> 
           
       </tr>

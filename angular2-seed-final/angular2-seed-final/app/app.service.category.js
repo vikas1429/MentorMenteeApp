@@ -10,21 +10,24 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const core_1 = require("@angular/core");
-const message_service_1 = require("./message.service");
-let AppComponent = class AppComponent {
-    constructor(messageService) {
-        this.message = messageService.getMsg();
+const http_1 = require("@angular/http");
+require("rxjs/add/operator/map");
+require("rxjs/add/observable/of");
+const app_mentormentee_1 = require("./app.mentormentee");
+let csCategoryService = class csCategoryService {
+    constructor(_http, _mentordetail) {
+        this._http = _http;
+        this._mentordetail = _mentordetail;
+    }
+    getCategories() {
+        let connection = this._mentordetail.connectionstring() + 'GetCategory';
+        return this._http.get(connection)
+            .map(resp => resp.json());
     }
 };
-AppComponent = __decorate([
-    core_1.Component({
-        selector: 'my-app',
-        template: `
-  
-  <router-outlet></router-outlet>
-  `
-    }),
-    __metadata("design:paramtypes", [message_service_1.MessageService])
-], AppComponent);
-exports.AppComponent = AppComponent;
-//# sourceMappingURL=app.component.js.map
+csCategoryService = __decorate([
+    core_1.Injectable(),
+    __metadata("design:paramtypes", [http_1.Http, app_mentormentee_1.mentordetail])
+], csCategoryService);
+exports.csCategoryService = csCategoryService;
+//# sourceMappingURL=app.service.category.js.map

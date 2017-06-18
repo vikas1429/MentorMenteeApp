@@ -10,23 +10,26 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const core_1 = require("@angular/core");
-const forms_1 = require("@angular/forms");
 const router_1 = require("@angular/router");
 const app_registeruser_service_1 = require("./app.registeruser.service");
-let SignUpFormComponent = class SignUpFormComponent {
-    constructor(_router, _userregistration) {
+let LinkedinComponent = class LinkedinComponent {
+    constructor(_router, _userregistration, _route) {
         this._router = _router;
         this._userregistration = _userregistration;
+        this._route = _route;
     }
     ngOnInit() {
-        this.SignUp = new forms_1.FormGroup({
-            username: new forms_1.FormControl(''),
-            password: new forms_1.FormControl('')
+        //  alert("test1");
+        this.code = this._route.snapshot.queryParams['code'];
+        console.log(this.code);
+        this.subscribe = this._userregistration.Checkuser(this.code).subscribe((result) => {
+            //  alert("test");
+            this._router.navigate(['mentor', result]);
         });
     }
     onSignUp() {
         // this._location.go('https://www.linkedin.com/oauth/v2/authorization?response_type=code&client_id=860l38mgbq37qs&client_secret=uRJWOyIsAzXQqS1n&redirect_uri=http://localhost:3000');
-        window.location.href = 'https://www.linkedin.com/oauth/v2/authorization?response_type=code&client_id=860l38mgbq37qs&client_secret=uRJWOyIsAzXQqS1n&redirect_uri=http://localhost:3000/linkedconnect';
+        //  window.location.href='https://www.linkedin.com/oauth/v2/authorization?response_type=code&client_id=860l38mgbq37qs&client_secret=uRJWOyIsAzXQqS1n&redirect_uri=http://localhost:3000';
         /* alert("test");
          this._auth.login("Linkedin").subscribe(
              (result)=>{
@@ -52,12 +55,13 @@ let SignUpFormComponent = class SignUpFormComponent {
           );*/
     }
 };
-SignUpFormComponent = __decorate([
+LinkedinComponent = __decorate([
     core_1.Component({
-        selector: 'signup-form',
-        templateUrl: 'app/signup-form.component.html'
+        selector: 'linkedConnect',
+        template: '<h1>loging in...</h1>'
     }),
-    __metadata("design:paramtypes", [router_1.Router, app_registeruser_service_1.userregistration])
-], SignUpFormComponent);
-exports.SignUpFormComponent = SignUpFormComponent;
-//# sourceMappingURL=signup-form.component.js.map
+    __metadata("design:paramtypes", [router_1.Router, app_registeruser_service_1.userregistration,
+        router_1.ActivatedRoute])
+], LinkedinComponent);
+exports.LinkedinComponent = LinkedinComponent;
+//# sourceMappingURL=app.linkedinConnect.component.js.map
